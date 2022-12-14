@@ -1,0 +1,60 @@
+[System]
+Name='custom_fis'
+Type='mamdani'
+Version=2.0
+NumInputs=4
+NumOutputs=2
+NumRules=4
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='front'
+Range=[0 1]
+NumMFs=2
+MF1='few':'linemf2',[0.8 0.6 -0.3 -0.2]
+MF2='many':'linemf2',[0.2 0.6 0.2 0.3]
+
+[Input2]
+Name='back'
+Range=[0 1]
+NumMFs=2
+MF1='few':'linemf2',[0.8 0.6 -0.3 -0.2]
+MF2='many':'linemf2',[0.2 0.6 0.2 0.3]
+
+[Input3]
+Name='left'
+Range=[0 1]
+NumMFs=2
+MF1='few':'linemf2',[0.8 0.6 -0.3 -0.2]
+MF2='many':'linemf2',[0.2 0.6 0.2 0.3]
+
+[Input4]
+Name='right'
+Range=[0 1]
+NumMFs=2
+MF1='few':'linemf2',[0.8 0.6 -0.3 -0.2]
+MF2='many':'linemf2',[0.2 0.6 0.2 0.3]
+
+[Output1]
+Name='frontback_ratio'
+Range=[-2 2]
+NumMFs=2
+MF1='move_backward':'trimf',[-2 -1 0]
+MF2='move_forward':'trimf',[0 1 2]
+
+[Output2]
+Name='leftright_ratio'
+Range=[-2 2]
+NumMFs=2
+MF1='move_left':'trimf',[-2 -1 0]
+MF2='move_right':'trimf',[0 1 2]
+
+[Rules]
+2 1 0 0, 2 0 (1) : 1
+1 2 0 0, 1 0 (1) : 1
+0 0 2 1, 0 1 (1) : 1
+0 0 1 2, 0 2 (1) : 1
